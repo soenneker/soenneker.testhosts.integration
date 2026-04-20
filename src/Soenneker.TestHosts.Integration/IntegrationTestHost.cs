@@ -33,7 +33,7 @@ public class IntegrationTestHost : IIntegrationTestHost
     public AutoFaker AutoFaker { get; private set; }
     public AutoFakerConfig? AutoFakerConfig { get; set; }
 
-    public Task InitializeAsync()
+    public virtual Task InitializeAsync()
     {
         AutoFakerConfig config = AutoFakerConfig ?? new AutoFakerConfig();
         AutoFaker = new AutoFaker(config);
