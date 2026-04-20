@@ -23,7 +23,7 @@ using Soenneker.Extensions.ValueTask;
 namespace Soenneker.TestHosts.Integration;
 
 ///<inheritdoc cref="IIntegrationTestHost"/>
-public sealed class IntegrationTestHost : IIntegrationTestHost
+public class IntegrationTestHost : IIntegrationTestHost
 {
     private static readonly ConcurrentDictionary<string, string> _appSettingsPathCache = new(StringComparer.Ordinal);
 
@@ -33,11 +33,12 @@ public sealed class IntegrationTestHost : IIntegrationTestHost
     public AutoFaker AutoFaker { get; private set; }
     public AutoFakerConfig? AutoFakerConfig { get; set; }
 
-    public IntegrationTestHost(AutoFakerConfig? config = null)
+    public Task InitializeAsync()
     {
-        AutoFakerConfig = config;
-        AutoFaker = new AutoFaker(config ?? new AutoFakerConfig());
+        AutoFakerConfig config = AutoFakerConfig ?? new AutoFakerConfig();
+        AutoFaker = new AutoFaker(config);
         Faker = AutoFaker.Faker;
+        return Task.CompletedTask;
     }
 
     public void RegisterFactory<TStartup>(string projectName) where TStartup : class
@@ -73,8 +74,10 @@ public sealed class IntegrationTestHost : IIntegrationTestHost
                 services.AddJwtUtilAsScoped();
                 services.AddIntegrationTestsStartupFilterAsSingleton();
 
-                services.AddAuthentication(DeployEnvironment.Test.Name)
-                        .AddScheme<AuthenticationSchemeOptions, TestAuthHandler>(DeployEnvironment.Test.Name, static _ => { });
+                services.AddAuthentication(DeployEnvironment.Test.Name).AddScheme<AuthenticationSchemeOptions, TestAuthHandler>(DeployEnvironment.Test.Name,
+                    static _ =>
+                    {
+                    });
             });
 
             builder.ConfigureServices(static services =>
@@ -85,10 +88,7 @@ public sealed class IntegrationTestHost : IIntegrationTestHost
                 {
                     var sink = sp.GetRequiredService<TUnitTestContextSink>();
 
-                    loggerConfiguration
-                        .MinimumLevel.Verbose()
-                        .WriteTo.Async(a => a.Sink(sink))
-                        .Enrich.FromLogContext();
+                    loggerConfiguration.MinimumLevel.Verbose().WriteTo.Async(a => a.Sink(sink)).Enrich.FromLogContext();
                 });
             });
         });

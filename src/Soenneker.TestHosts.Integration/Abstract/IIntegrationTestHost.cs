@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Testing;
 using Soenneker.Utils.AutoBogus;
 using System;
-using System.Threading.Tasks;
+using TUnit.Core.Interfaces;
 
 namespace Soenneker.TestHosts.Integration.Abstract;
 
@@ -11,7 +11,7 @@ namespace Soenneker.TestHosts.Integration.Abstract;
 /// <see cref="WebApplicationFactory{TEntryPoint}"/> instances for multiple ASP.NET Core projects,
 /// with support for custom app settings, authentication, logging, and test utilities.
 /// </summary>
-public interface IIntegrationTestHost : IAsyncDisposable
+public interface IIntegrationTestHost : IAsyncInitializer, IAsyncDisposable
 {
     /// <summary>
     /// A configured instance of <see cref="Faker"/> for generating random data in tests.
