@@ -29,8 +29,10 @@ public class IntegrationTestHost : IIntegrationTestHost
 
     private readonly Dictionary<Type, IFactoryHolder> _factories = new();
 
-    public Faker Faker { get; private set; }
-    public AutoFaker AutoFaker { get; private set; }
+    public Faker Faker { get; private set; } = null!;
+
+    public AutoFaker AutoFaker { get; private set; } = null!;
+
     public AutoFakerConfig? AutoFakerConfig { get; set; }
 
     public virtual Task InitializeAsync()
