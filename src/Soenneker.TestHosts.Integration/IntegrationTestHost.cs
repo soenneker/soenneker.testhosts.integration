@@ -33,8 +33,15 @@ public class IntegrationTestHost : IIntegrationTestHost
 
     public AutoFaker AutoFaker { get; private set; } = null!;
 
+    /// <summary>
+    /// Gets or sets auto faker config.
+    /// </summary>
     public AutoFakerConfig? AutoFakerConfig { get; set; }
 
+    /// <summary>
+    /// Initializes async.
+    /// </summary>
+    /// <returns>A task that represents the asynchronous operation.</returns>
     public virtual Task InitializeAsync()
     {
         AutoFakerConfig config = AutoFakerConfig ?? new AutoFakerConfig();
@@ -96,6 +103,11 @@ public class IntegrationTestHost : IIntegrationTestHost
         });
     }
 
+    /// <summary>
+    /// Gets app settings path.
+    /// </summary>
+    /// <param name="projectName">The project name.</param>
+    /// <returns>The result of the operation.</returns>
     public static string GetAppSettingsPath(string projectName)
     {
         return _appSettingsPathCache.GetOrAdd(projectName, static pn =>
@@ -116,6 +128,10 @@ public class IntegrationTestHost : IIntegrationTestHost
         });
     }
 
+    /// <summary>
+    /// Asynchronously releases resources used by the current instance.
+    /// </summary>
+    /// <returns>A task that represents the asynchronous operation.</returns>
     public async ValueTask DisposeAsync()
     {
         foreach (IFactoryHolder holder in _factories.Values)
