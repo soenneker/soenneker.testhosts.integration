@@ -48,6 +48,6 @@
         <PackageReference Include="Soenneker.Serilog.Sinks.TUnit" Version="4.0.74" />
         <PackageReference Include="Soenneker.StartupFilters.IntegrationTests" Version="4.0.115" />
         <PackageReference Include="Soenneker.Utils.AutoBogus" Version="4.0.925" />
-        <PackageReference Include="Soenneker.Utils.Test.AuthHandler" Version="4.0.317" />
+        <PackageReference Include="Soenneker.Utils.Test.AuthHandler" Version="4.0.319" />
     </ItemGroup>
 </Project>
