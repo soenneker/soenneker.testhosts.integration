@@ -41,7 +41,7 @@ public class IntegrationTestHost : IIntegrationTestHost
     /// <summary>
     /// Initializes async.
     /// </summary>
-    /// <returns>A task that represents the asynchronous operation.</returns>
+    /// <returns>A task that completes when the Integration Test Host is ready for use.</returns>
     public virtual Task InitializeAsync()
     {
         AutoFakerConfig config = AutoFakerConfig ?? new AutoFakerConfig();
@@ -106,8 +106,8 @@ public class IntegrationTestHost : IIntegrationTestHost
     /// <summary>
     /// Gets app settings path.
     /// </summary>
-    /// <param name="projectName">The project name.</param>
-    /// <returns>The result of the operation.</returns>
+    /// <param name="projectName">Name of the project to target.</param>
+    /// <returns>The requested text.</returns>
     public static string GetAppSettingsPath(string projectName)
     {
         return _appSettingsPathCache.GetOrAdd(projectName, static pn =>
