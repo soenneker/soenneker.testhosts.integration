@@ -22,7 +22,7 @@ using Soenneker.Extensions.ValueTask;
 
 namespace Soenneker.TestHosts.Integration;
 
-///<inheritdoc cref="IIntegrationTestHost"/>
+/// <inheritdoc cref="IIntegrationTestHost"/>
 public class IntegrationTestHost : IIntegrationTestHost
 {
     private static readonly ConcurrentDictionary<string, string> _appSettingsPathCache = new(StringComparer.Ordinal);
