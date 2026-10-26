@@ -46,11 +46,11 @@
         <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="11.0.0-rc.3.26522.148" />
         <PackageReference Include="Serilog.AspNetCore" Version="10.0.0" />
         <PackageReference Include="Serilog.Sinks.Async" Version="2.1.0" />
-        <PackageReference Include="Soenneker.Enums.DeployEnvironment" Version="11.0.261" />
-        <PackageReference Include="Soenneker.Serilog.Sinks.TUnit" Version="4.0.152" />
+        <PackageReference Include="Soenneker.Enums.DeployEnvironment" Version="11.0.262" />
+        <PackageReference Include="Soenneker.Serilog.Sinks.TUnit" Version="11.0.154" />
         <PackageReference Include="Soenneker.StartupFilters.IntegrationTests" Version="11.0.144" />
-        <PackageReference Include="Soenneker.Utils.AutoBogus" Version="4.0.991" />
-        <PackageReference Include="Soenneker.Utils.Test.AuthHandler" Version="4.0.386" />
+        <PackageReference Include="Soenneker.Utils.AutoBogus" Version="11.0.994" />
+        <PackageReference Include="Soenneker.Utils.Test.AuthHandler" Version="11.0.389" />
     </ItemGroup>
     <ItemGroup>
         <PackageReference Include="Soenneker.Extensions.ValueTask" Version="4.0.133" />
